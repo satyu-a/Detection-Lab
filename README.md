@@ -37,8 +37,8 @@ This lab is not just about setting up tools—it’s about learning how attacker
 2. Setting up a Hypervisior, where all our virtual machines will be installed.
 3. Installing Windows 10 Pro as our target machine
 4. Installing Kali Linux as our attacking machine
-5. Setting up the Network configurations
-6. Installing and setup SPLUNK Enterprise on Windows 10 Pro
+5. Installing and setup SPLUNK Enterprise on Windows 10 Pro
+6. Setting up the Network configurations
 7. Generating some logs to check connectivity
 
 
@@ -190,10 +190,132 @@ After opening the setup, you will be presented with a window like this:
 Just like the windows system, take a Snapshot of the fresh install.
 
 
-## Step 5: Setting up Network configurations
+## Step 5: Installing SPLUNK Enterprise and configuring it on Windows 10 Pro (VM-target)
+1. Power on the Windows 10 Pro VM and update the drivers to their latest versions by going to: **"Settings > Windows Update"**
 
-Before setting up a network configuration, I will tell you about the different network options available to us
-- NAT Network
+   <img width="1023" height="798" alt="image" src="https://github.com/user-attachments/assets/13829e30-e0cf-47c5-9b59-a89f1b6dc15e" />
+
+2. After the windows is up to date, open Microsoft Edge and navigate to splunk's website using this link [Splunk Signup](https://www.splunk.com/en_us/form/sign-up.html?redirecturl=https://www.splunk.com/).
+
+   <img width="1637" height="901" alt="image" src="https://github.com/user-attachments/assets/499ed969-92b0-433c-bb8f-90dc30ce9a50" />
+
+3. Create a splunk enterprise account and login, then Click on **"Trials and Downloads"** on the top right corner. Then click on **"Get my free Trial"** button below the **"Splunk Enterprise"** section.
+
+   <img width="1561" height="925" alt="image" src="https://github.com/user-attachments/assets/60fe043f-d1e9-4d31-8d5b-a77299f9285b" />
+
+4. I will take you to a downloads page with several splunk versions. Click on **"Previous Releases"** to see all the options. Make sure you select the **"Windows"** tab.
+
+   <img width="1184" height="605" alt="image" src="https://github.com/user-attachments/assets/3390c30a-967b-4495-8166-1336f96c455b" />
+
+5. At the time of drafting this document, the latest version was **"9.4.4"**, to make sure we have a stable release we will be downloading N-1, i.e, 9.4.3. Also make sure the operating system is mentioned, like for us Windows 10 should be mentioned there.
+
+    <img width="1197" height="727" alt="image" src="https://github.com/user-attachments/assets/53caec89-af38-405f-aa18-ebbeb05b1c74" />
+
+6. Click on **"Download now"** and the download will begin.
+
+      <img width="1258" height="554" alt="image" src="https://github.com/user-attachments/assets/66c27b49-8009-4b3c-803a-1c7dc597c5b7" />
+
+7. After the download is complete, go to downloads and run the splunk file.
+
+      <img width="660" height="262" alt="image" src="https://github.com/user-attachments/assets/844b76b4-262f-4a19-8cf5-2ad2d1aee672" />
+
+8. Agree the license and click **"Customize"**.
+
+     <img width="360" height="284" alt="image" src="https://github.com/user-attachments/assets/68a60bbc-3eb6-47fe-a826-26105f8d72b6" />
+
+9. Here we can set a custom installation path, however I'am going to leave it as default and click **"Next"**
+
+      <img width="363" height="282" alt="image" src="https://github.com/user-attachments/assets/4ecfac1c-603c-4107-a158-9359eb7eaf77" />
+
+10. Since we are on a local account, select **"Local System"** and click **"Next"**
+
+       <img width="362" height="283" alt="image" src="https://github.com/user-attachments/assets/6681c9e4-e10e-4003-91d2-50dec17c7783" />
+
+11. Enter a username and password. We will be using these credentials to loging to the splunk instance.
+    **NOTE:** These credentials and the SPLUNK.COM credentials have nothing to do with each other and can be different.
+
+      <img width="365" height="287" alt="image" src="https://github.com/user-attachments/assets/9f22b28e-e958-4667-97ce-27c0757c157e" />
+
+12. Click **"Install"**
+
+      <img width="362" height="281" alt="image" src="https://github.com/user-attachments/assets/14643b17-f592-4f48-93d3-f7af583d3c76" />
+
+13. After the install is complete, and you click **"Finish"**, you should be redirected to splunk web login portal. Alternatively, you can go to your browser of choice and enter: http://localhost:8000 or http://127.0.0.1:8000 to go to the console as splunk web runs on port 8000 by default.
+
+      <img width="1204" height="624" alt="image" src="https://github.com/user-attachments/assets/1cbb2edb-77bf-46be-bb92-cd6908404c88" />
+
+14. Use the credentials created during installation to login and you should be greeted with window like this.
+
+      <img width="1242" height="549" alt="image" src="https://github.com/user-attachments/assets/e26d3ad6-639a-4de0-950a-d9f69faf20c9" />
+
+15. Click on **"Add data"** to add data sources for log ingestion. If you want to take the tour, go ahead.
+
+       <img width="1247" height="591" alt="image" src="https://github.com/user-attachments/assets/df001b09-e983-40c3-b25c-24bf537f950d" />
+
+16. Then click on **"Monitor"**
+
+       <img width="1237" height="594" alt="image" src="https://github.com/user-attachments/assets/5cfc703f-34ff-474a-883a-a5050f54e3e0" />
+
+17. Then click on **"Local Event logs"**
+
+       <img width="1240" height="589" alt="image" src="https://github.com/user-attachments/assets/7e8690e7-b2b8-4f28-838c-a01fea60af91" />
+
+18. Now on the right side select **"System"**, **"Application"** and **"Security"** as these are the logs we want to monitor for now.
+
+       <img width="1224" height="579" alt="image" src="https://github.com/user-attachments/assets/3fbdc179-9b63-4149-a3ae-3b24baf537d7" />
+
+19. Leave it as is for now. Default index is the **"Main"** index so its fine. Then click on **"Review"**.
+
+       <img width="1227" height="572" alt="image" src="https://github.com/user-attachments/assets/b475f6ff-0d40-4691-a93a-62b9a39c28b4" />
+
+20. Now click on **"Submit"** and we should be ready to search the logs!!
+
+       <img width="1229" height="603" alt="image" src="https://github.com/user-attachments/assets/20a04316-8612-408a-a2fc-c64fbad13e4f" /> <br>
+
+       <img width="1238" height="572" alt="image" src="https://github.com/user-attachments/assets/f5eff1c5-024b-4fb8-806d-8c48c9d70b3b" />
+
+21. This is the search window
+
+       <img width="1253" height="581" alt="image" src="https://github.com/user-attachments/assets/87567ea8-2c38-49ca-8483-fdbf09bf7b39" />
+
+-Now we have some logs but there is a better way! For that we will be using **"Sysmon"** to get more logs. Now begins the Sysmon setup:
+
+
+
+
+
+
+
+## Step 6: Setting up Network configurations
+
+Before setting up a network configuration, I will quickly tell you about the different network options available to us
+
+- NAT: This is the default configuration of the VMware, in this config, each vm is assigned a network within the host, all of them have access to the internet.
+  
+  <img width="913" height="644" alt="image" src="https://github.com/user-attachments/assets/8c3727fb-65fa-424c-a824-ba7ba317ebea" />
+
+-NAT Network: In this network, all VMs have access to the internet but are meshed into a single network.
+
+   <img width="913" height="644" alt="image" src="https://github.com/user-attachments/assets/179ff2b2-e4de-49d3-a0d0-b3c2f03f9a42" />
+
+-Bridged: In this network, the VMs will act as physical machines and will be on the same network as the host machine.
+   
+   <img width="998" height="644" alt="image" src="https://github.com/user-attachments/assets/829d30b4-247d-4a56-a49a-d1f23cd1fca8" />
+
+-Host only network: These VMs are only accessible to the host machine, they do not have internet access.
+
+   <img width="933" height="645" alt="image" src="https://github.com/user-attachments/assets/7e3be929-2052-4685-9409-573b08a48de5" />
+
+-Lan Segment/Internal Network: The VMs will be in their own network, IP are assigned statically and no communication outside.
+
+   <img width="939" height="648" alt="image" src="https://github.com/user-attachments/assets/e07f799f-fba6-4420-a4ce-3a07ccbb83f9" />
+
+-Not attached: Here the network adapter is simply not attached, i.e, isolated device config, no communication at all.
+
+   <img width="909" height="640" alt="image" src="https://github.com/user-attachments/assets/13d217be-56d5-4ed5-bd11-7568b8b69801" />
+
+
+
 
 
 
