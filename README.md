@@ -25,6 +25,12 @@ This lab is not just about setting up tools—it’s about learning how attacker
 - Network analysis tools (such as Wireshark) for capturing and examining network traffic.
 - Telemetry generation tools to create realistic network traffic and attack scenarios.
 
+## Host system specifications
+- 4 Core Intel i5 8th gen, 16GB ram, 2TB SSD
+- Windows 10 64bit
+- All softwares and tools used are 64bit versions so you need to check your windows version before the installation. Other than 64bit is the 32bit version.
+- To find out your architecture type go to **"Settings > System > About"**, there under **"Device Specification"** you will see your **"System type"**.
+
 ## Process
 
 1. Designing an architecture of the detection lab for referencing and ease of organisation,
@@ -144,15 +150,50 @@ After opening the setup, you will be presented with a window like this:
 
 ## Step 4: Installing Kali Linux (Attacking machine)
 
-1. Kali Linux distro is the one most used to perform tests as it has the necessary tools. Now lets begin the installation. First we need to download the ISO file from kali's website.
-   Go to the website using this link: [Kali VM](https://www.kali.org/get-kali/#kali-virtual-machines)
+1. Kali Linux distro is the one most used to perform tests as it has the necessary tools. Now lets begin the installation. First we need to download the ISO file from Kali's website.<br>
+   Go to the website using this link: [Kali VM](https://www.kali.org/get-kali/#kali-virtual-machines) Select the **VMware** option and it will prompt you to save the file in a folder of your choice.<br>
+   The download will begin now,
+
+   <img width="1816" height="923" alt="image" src="https://github.com/user-attachments/assets/37f0eb7a-a05b-4e89-8a9f-939661255428" />
+
+2. The downloaded file will be a compressed or a Zip file so we need an "Unzipping" tool. We will be using **"7Zip"**. Download it from this link: [7Zip download](https://www.7-zip.org/),
+   Click on **"Download"**. After the download is complete, run the file and it will be installed.
+
+   <img width="685" height="209" alt="image" src="https://github.com/user-attachments/assets/36aa7f5b-fd73-4a1b-a5ad-ff4401d5ea05" />
+
+3. After Kali is downloaded, extract it using 7Zip by right clicking on the file > 7Zip > Extract.
+
+    <img width="1051" height="587" alt="image" src="https://github.com/user-attachments/assets/ae9c3d74-de32-45f1-b37d-5c884b229568" />
+
+4. Open the extracted folder
+
+   <img width="544" height="157" alt="image" src="https://github.com/user-attachments/assets/41fe3f43-093e-4524-a4ff-c6de4f2a8fd8" />
+
+6. Open the folder further and you should see lots of files. Select the file with the extension **".vmx"** and double click it.
+
+   <img width="991" height="431" alt="image" src="https://github.com/user-attachments/assets/21b5b22f-509f-4228-8c9d-7a943c8597c9" />
+
+7. If you are unable to see file extensions, enable it from the toolbar: **"View > File name extensions (Checkbox)"**
+
+   <img width="1008" height="142" alt="image" src="https://github.com/user-attachments/assets/226a3910-80b4-4b2e-89be-ff90eb9c9d93" />
+
+9. After double clicking the file, system will prompt you to select an app to open the file with, if it doesn't open using VMware automatically. Select the VMware Workstation
+
+   <img width="1035" height="567" alt="image" src="https://github.com/user-attachments/assets/a762e83b-4479-4626-a384-e1f08d5ef63c" />
+
+10. Kali will automatically load into the VMware, ready to use. 
+
+    <img width="1881" height="1008" alt="image" src="https://github.com/user-attachments/assets/18529eaa-a653-486a-ad98-4a75c35a5ea7" />
+
+11. Now power on the machine and use the credentials: **username: root, password: toor** to login for the first time.
+    Always change the credentials after logging in for security reasons.<br>
+Just like the windows system, take a Snapshot of the fresh install.
 
 
+## Step 5: Setting up Network configurations
 
-
-
-
-
+Before setting up a network configuration, I will tell you about the different network options available to us
+- NAT Network
 
 
 
