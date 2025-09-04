@@ -33,13 +33,13 @@ This lab is not just about setting up tools—it’s about learning how attacker
 
 ## Process
 
-1. Designing an architecture of the detection lab for referencing and ease of organisation,
+1. Designing an architecture of the detection lab for referencing and ease of organisation.
 2. Setting up a Hypervisior, where all our virtual machines will be installed.
-3. Installing Windows 10 Pro as our target machine
-4. Installing Kali Linux as our attacking machine
-5. Installing and setup SPLUNK Enterprise on Windows 10 Pro and configuring Sysmon
-6. Setting up the Network configurations
-7. Logs and Malware behaviour analysis
+3. Installing Windows 10 Pro as our target machine.
+4. Installing Kali Linux as our attacking machine.
+5. Installing and setup SPLUNK Enterprise on Windows 10 Pro and configuring Sysmon.
+6. Setting up the Network configurations.
+7. Logs and Malware behaviour analysis.
 
 > [!NOTE]
 > All configuration files are included in the repository so you can just download and use them if you wish to.
@@ -48,7 +48,7 @@ This lab is not just about setting up tools—it’s about learning how attacker
 
 ## Step 1: Designing Setup Architecture
 
-Plot the architecture using any flowchart making website, I used [Draw.io](https://www.drawio.com/).<br>
+Draw the logical diagram of the architecture using a flowchart maker, I used [Draw.io](https://www.drawio.com/).<br>
 In the legend write down the network configs as it will be useful for referencing.
 
    <img width="1406" height="792" alt="image" src="https://github.com/user-attachments/assets/518fc0be-d4a9-4998-b2ba-66b36d97aff4" />
