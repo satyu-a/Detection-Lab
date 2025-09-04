@@ -1,8 +1,8 @@
-# Basic Detection Lab
+# Basic SOC detection lab
 
 ## Objective
 
-The goal of this project is to build a hands-on basic detection lab that simulates real-world attack scenarios and defensive operations. By creating a controlled environment with logging, monitoring, and alerting, the lab aims to:
+The goal of this project is to build a hands-on SOC detection lab that simulates real-world attack scenarios and defensive operations. By creating a controlled environment with logging, monitoring, and alerting, the lab aims to:
 
 - Practice identifying and analyzing malicious activity.
 - Develop and test detection rules using SIEM tools (e.g., Splunk).
@@ -22,8 +22,8 @@ This lab is not just about setting up tools—it’s about learning how attacker
 ### Tools Used
 
 - Security Information and Event Management (SIEM) system for log ingestion and analysis (Splunk Enterprise).
-- Network analysis tools (such as Wireshark) for capturing and examining network traffic.
-- Telemetry generation tools to create realistic network traffic and attack scenarios.
+- Sysmon for monitoring and generating System logs.
+- Attack tools such as Metasploit to simulate attacks and to generate telemetry.
 
 ## Host system specifications
 - 4 Core Intel i5 8th gen, 16GB ram, 2TB SSD
@@ -39,7 +39,11 @@ This lab is not just about setting up tools—it’s about learning how attacker
 4. Installing Kali Linux as our attacking machine
 5. Installing and setup SPLUNK Enterprise on Windows 10 Pro and configuring Sysmon
 6. Setting up the Network configurations
-7. Generating some logs to check connectivity
+7. Logs and Malware behaviour analysis
+
+> [!NOTE]
+> All configuration files are included in the repository so you can just download and use them if you wish to.
+
 
 
 ## Step 1: Designing Setup Architecture
@@ -95,14 +99,17 @@ After opening the setup, you will be presented with a window like this:
    <img width="428" height="433" alt="image" src="https://github.com/user-attachments/assets/30d6efe3-ccc7-4747-9d8e-00eff6422937" />
 
 9. You can leave it as is but if you have 16 GB ram, i would recommend allocating atleast 4GB. Click on **"Customize Hardware"** and then select **"Memory"** and adjust the slider as needed and click **"OK"**.<br>
-   Make sure the **"Power on this virtual machine after creation"** is checked as it will automatically turn on the VM.<br>
+
+   <img width="425" height="431" alt="image" src="https://github.com/user-attachments/assets/f769d9a9-7345-46ea-b884-3afd2dab25ad" /><br>
+   <img width="953" height="649" alt="image" src="https://github.com/user-attachments/assets/9abe49a4-2bb9-44dc-9576-47024c236823" /><br> 
 
 > [!NOTE]
 > The moment you click **"Finish"** it may display **"Press any key"** message so immidiately click on a key to boot to setup. If u miss this and it says **"Time out"** just restart the Virtual machine from the toolbar: **VM > Power > Restart Guest**.   
 
-   <img width="425" height="431" alt="image" src="https://github.com/user-attachments/assets/f769d9a9-7345-46ea-b884-3afd2dab25ad" /><br>   
-   <img width="953" height="649" alt="image" src="https://github.com/user-attachments/assets/9abe49a4-2bb9-44dc-9576-47024c236823" /><br>   
-   <img width="1890" height="965" alt="image" src="https://github.com/user-attachments/assets/8455f26b-a224-42bc-9011-d18f39db0d4f" />
+10. Make sure the **"Power on this virtual machine after creation"** is checked as it will automatically turn on the VM.
+
+    <img width="425" height="431" alt="image" src="https://github.com/user-attachments/assets/f769d9a9-7345-46ea-b884-3afd2dab25ad" />     
+    <img width="1890" height="965" alt="image" src="https://github.com/user-attachments/assets/8455f26b-a224-42bc-9011-d18f39db0d4f" />
 
 
 11. Now You should see the Windows Setup screen like this and click on **"Next"** after selecting your preferences: 
@@ -138,7 +145,7 @@ After opening the setup, you will be presented with a window like this:
       <img width="643" height="482" alt="image" src="https://github.com/user-attachments/assets/46955b03-84ed-4c60-b6a0-e68fe184c55f" />
 
 19. Now setup windows as you would. After the setup is complete and you boot to the desktop, make sure to take a **"snapshot"**. A snapshot is like a config backup that saves the machines state at the time of creating the snapshot.
-    It will allow you to restore the     machine to the current **"Fresh Install"** state if you break something. Name the snapshot and write a any credientials or info you want in the discription and click **"Take Snapshot"**.
+    It will allow you to restore the machine to the current **"Fresh Install"** state if you break something. Name the snapshot and write a any credientials or info you want in the discription and click **"Take Snapshot"**.
     To revert to a snapshot, in the toolbar: **VM > Snapshot > Revert to a snapshot**
 
       <img width="762" height="377" alt="image" src="https://github.com/user-attachments/assets/feeb1fbe-0df8-46b9-90a9-027b004cfc35" /><br>
@@ -167,25 +174,25 @@ After opening the setup, you will be presented with a window like this:
 
    <img width="544" height="157" alt="image" src="https://github.com/user-attachments/assets/41fe3f43-093e-4524-a4ff-c6de4f2a8fd8" />
 
-6. Open the folder further and you should see lots of files. Select the file with the extension **".vmx"** and double click it.
+5. Open the folder further and you should see lots of files. Select the file with the extension **".vmx"** and double click it.
 
    <img width="991" height="431" alt="image" src="https://github.com/user-attachments/assets/21b5b22f-509f-4228-8c9d-7a943c8597c9" />
 
-7. If you are unable to see file extensions, enable it from the toolbar: **"View > File name extensions (Checkbox)"**
+6. If you are unable to see file extensions, enable it from the toolbar: **"View > File name extensions (Checkbox)"**
 
    <img width="1008" height="142" alt="image" src="https://github.com/user-attachments/assets/226a3910-80b4-4b2e-89be-ff90eb9c9d93" />
 
-9. After double clicking the file, system will prompt you to select an app to open the file with, if it doesn't open using VMware automatically. Select the VMware Workstation
+7. After double clicking the file, system will prompt you to select an app to open the file with, if it doesn't open using VMware automatically. Select the VMware Workstation
 
    <img width="1035" height="567" alt="image" src="https://github.com/user-attachments/assets/a762e83b-4479-4626-a384-e1f08d5ef63c" />
 
-10. Kali will automatically load into the VMware, ready to use. 
+8. Kali will automatically load into the VMware, ready to use. 
 
     <img width="1881" height="1008" alt="image" src="https://github.com/user-attachments/assets/18529eaa-a653-486a-ad98-4a75c35a5ea7" />
 
-11. Now power on the machine and use the credentials: **username: kali, password: kali** to login for the first time.
+9. Now power on the machine and use the credentials: **username: kali, password: kali** to login for the first time.
     Always change the credentials after logging in for security reasons.<br>
-Just like the windows system, take a Snapshot of the fresh install.
+   Just like the windows system, take a Snapshot of the fresh install.
 
 
 ## Step 5: 
@@ -233,9 +240,12 @@ Just like the windows system, take a Snapshot of the fresh install.
        <img width="362" height="283" alt="image" src="https://github.com/user-attachments/assets/6681c9e4-e10e-4003-91d2-50dec17c7783" />
 
 11. Enter a username and password. We will be using these credentials to loging to the splunk instance.
-    **NOTE:** These credentials and the SPLUNK.COM credentials have nothing to do with each other and can be different.
+       <img width="365" height="287" alt="image" src="https://github.com/user-attachments/assets/9f22b28e-e958-4667-97ce-27c0757c157e" />
+    
+> [!NOTE]
+> These credentials and the SPLUNK.COM credentials have nothing to do with each other and can be different.
 
-      <img width="365" height="287" alt="image" src="https://github.com/user-attachments/assets/9f22b28e-e958-4667-97ce-27c0757c157e" />
+     
 
 12. Click **"Install"**
 
@@ -409,7 +419,7 @@ Before setting up a network configuration, I will quickly tell you about the dif
 
    <img width="909" height="640" alt="image" src="https://github.com/user-attachments/assets/13d217be-56d5-4ed5-bd11-7568b8b69801" />
 
--For this lab, we will be assigning static ip to both windows and splunk Kali machine and make sure they can "talk" to each other. Also Windows defender antivirus and firewall will be diasbled on the VM to make sure the attacks are executed properly and that all ports accept inbound traffic.
+-For this lab, we will be assigning static ip to both windows and splunk Kali machine and make sure they can "talk" to each other. Also Windows defender antivirus and firewall will be diasbled on the VM to make sure the attacks are executed properly and that all ports accept inbound traffic. Bacically we will be going with **"Lan Segment"** configuration.
 
 1. Open VM settings on windows machine and under network adapter settings click on **"Lan Segments..."** and add a lan segment. I have neamed my segment as TEST.
 
@@ -603,15 +613,31 @@ Before setting up a network configuration, I will quickly tell you about the dif
 22. Now lets go back to windows machine and check what logs are available on SPLUNK
        
 
-## Log Analysis and Threat detection
+## Logs and Malware behaviour analysis
 
-<img width="1327" height="844" alt="image" src="https://github.com/user-attachments/assets/bc85dfd9-2326-4876-bfb6-4243101563eb" />
+   - The file that contained the malware is Resume.pdf(1).exe on the target machine as it was downloaded twice.
+         <img width="1327" height="844" alt="image" src="https://github.com/user-attachments/assets/bc85dfd9-2326-4876-bfb6-4243101563eb" /><br>
+   - The EventCodes 1116 shows malware detected but not remediated: Our malware was detected by antivirus because realtime protection was not turned off
+   - 1117 Shows malware was remediated. we allowed the malware to run and turned off real time protection.
+   - If we check the EventCode 1 we will get logs and expanding the first log, we can see that **"Resume.pdf(1).exe"** spawned **"cmd.exe"**. Which is odd for a pdf file.
+        <img width="1591" height="632" alt="image" src="https://github.com/user-attachments/assets/124a07a1-60e7-430b-ae40-5f943ca4656b" />
+   - We can see that the **"parent_process_exec = Resume.pdf(1).exe"** spawned the **"process_exec = cmd.exe"**. We can further check what the cmd.exe ran by searching the **"process_id = 9728"**
+        <img width="1107" height="387" alt="image" src="https://github.com/user-attachments/assets/9af4278f-859b-49e4-ac34-437b15043758" />
+   - Running the search query returns the folowing. I have also visualized the data in a tabular format:
+        <img width="1614" height="622" alt="image" src="https://github.com/user-attachments/assets/a43c6468-4a10-4707-96ef-85047bad89ea" />
+   - Here it shows all the commands we ran from our Kali machine, thus marking the file Resume.pdf(1).exe as a malware. 
+
+## Conclusion
+
+- This Lab demonstrates a basic level simulation of a SOC environment. In a real SOC environment we have several security devices added to the setup such as Email Gateway, Firewalls, Proxy, Antivirus, Web-Application Firewall, etc.
+- Every SOC analyst must have their own SOC Detection Lab to perform security analysis.
+- Feel free to follow this procedure and create your own SOC lab.
 
 
--The file that contained the malware is Resume(1).pdf.exe on the target machine as it was downloaded twice.
--The EventCodes 1116 shows malware detected but not remediated: Our malware was detected by antivirus because realtime protection was not turned off
--1117 Shows malware was remediated. we allowed the malware to run and turned off real time protection.
--
+
+
+      
+      
 
 
 
