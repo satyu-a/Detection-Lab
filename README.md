@@ -399,25 +399,31 @@ Before setting up a network configuration, I will quickly tell you about the dif
   
   <img width="913" height="644" alt="image" src="https://github.com/user-attachments/assets/8c3727fb-65fa-424c-a824-ba7ba317ebea" />
 
--NAT Network: In this network, all VMs have access to the internet but are meshed into a single network.
+- NAT Network: In this network, all VMs have access to the internet but are meshed into a single network.
 
    <img width="913" height="644" alt="image" src="https://github.com/user-attachments/assets/179ff2b2-e4de-49d3-a0d0-b3c2f03f9a42" />
 
--Bridged: In this network, the VMs will act as physical machines and will be on the same network as the host machine.
+- Bridged: In this network, the VMs will act as physical machines and will be on the same network as the host machine.
    
    <img width="998" height="644" alt="image" src="https://github.com/user-attachments/assets/829d30b4-247d-4a56-a49a-d1f23cd1fca8" />
 
--Host only network: These VMs are only accessible to the host machine, they do not have internet access.
+- Host only network: These VMs are only accessible to the host machine, they do not have internet access.
 
    <img width="933" height="645" alt="image" src="https://github.com/user-attachments/assets/7e3be929-2052-4685-9409-573b08a48de5" />
 
--Lan Segment/Internal Network: The VMs will be in their own network, IP are assigned statically and no communication outside.
+- Lan Segment/Internal Network: The VMs will be in their own network, IP are assigned statically and no communication outside.
 
    <img width="939" height="648" alt="image" src="https://github.com/user-attachments/assets/e07f799f-fba6-4420-a4ce-3a07ccbb83f9" />
 
--Not attached: Here the network adapter is simply not attached, i.e, isolated device config, no communication at all.
-
-   <img width="909" height="640" alt="image" src="https://github.com/user-attachments/assets/13d217be-56d5-4ed5-bd11-7568b8b69801" />
+- To summarise, yoy can refer to the following table for the network configs according to your needs:
+   | Network Options          | Access To Internet | Use case        |
+   |--------------------------|--------------------|-----------------|
+   | NAT                      | Yes                | Test Tools      |
+   | NAT Network              | YES                | Test Tools      |
+   | Bridged                  | YES                | Test Tools      |
+   | Host-Only                | NO                 | Analyze Malware |
+   | Lan Segment              | NO                 | Analyze Malware |
+             
 
 -For this lab, we will be assigning static ip to both windows and splunk Kali machine and make sure they can "talk" to each other. Also Windows defender antivirus and firewall will be diasbled on the VM to make sure the attacks are executed properly and that all ports accept inbound traffic. Bacically we will be going with **"Lan Segment"** configuration.
 
