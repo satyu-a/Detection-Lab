@@ -43,6 +43,7 @@ This lab is not just about setting up tools—it’s about learning how attacker
 
 > [!NOTE]
 > All configuration files are included in the repository so you can just download and use them if you wish to.
+> Also the widows defender is completely disabled. After you are done with the lab, make sure to enable it for security reasons.
 
 
 
